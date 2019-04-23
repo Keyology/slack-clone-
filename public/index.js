@@ -9,6 +9,15 @@ $(document).ready(() => {
       $(".usersOnline").append(`<div class="userOnline">${username}</div>`);
     }
   });
+  $("#newChannelBtn").click(() => {
+    let newChannel = $("#newChannelInput").val();
+
+    if (newChannel.length > 0) {
+      // Emit the new channel to the server
+      socket.emit("new channel", newChannel);
+      $("#newChannelInput").val("");
+    }
+  });
 
   $("#createUserBtn").click(e => {
     e.preventDefault();
