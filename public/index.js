@@ -4,6 +4,11 @@ $(document).ready(() => {
 
   //Keep track of the current user
   let currentUser;
+  socket.emit(`get online users`, onlineUsers => {
+    for (username in onlineUsers) {
+      $(".usersOnline").append(`<div class="userOnline">${username}</div>`);
+    }
+  });
 
   $("#createUserBtn").click(e => {
     e.preventDefault();
@@ -44,5 +49,12 @@ $(document).ready(() => {
       <p class="messageText">${data.message}</p>
     </div>
   `);
+  });
+
+  socket.on("user has left", onlineUsers => {
+    $(".usersOnline").empty();
+    for (username in onlineUsers) {
+      $(".usersOnline").append(`<p>${username}</p>`);
+    }
   });
 });
