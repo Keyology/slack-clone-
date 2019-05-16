@@ -24,6 +24,7 @@ COPY .  /app
 # We start our application by calling
 # npm start.
 
+EXPOSE 5000
 
 
 CMD [ "npm", "start" ]
